@@ -38,7 +38,8 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 
@@ -47,9 +48,450 @@ button {
 }
 
 button:focus-visible,
-input:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   outline: 3px solid rgb(112 118 89 / 34%);
   outline-offset: 3px;
+}
+
+.checkin-shell {
+  min-height: 100vh;
+  background: #f5f1e8;
+  color: var(--charcoal);
+}
+
+.checkin-topbar {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.75rem;
+  padding: 0.85rem max(1rem, env(safe-area-inset-left));
+  border-bottom: 1px solid var(--line);
+  background: rgb(251 249 244 / 96%);
+  backdrop-filter: blur(10px);
+}
+
+.checkin-topbar .checkin-kicker {
+  margin-bottom: 0.25rem;
+}
+
+.checkin-topbar strong {
+  display: block;
+  max-width: 72vw;
+  overflow: hidden;
+  font-size: 0.84rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkin-content {
+  width: min(100%, 42rem);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 7rem;
+}
+
+.checkin-content h1,
+.checkin-login-card h1 {
+  margin: 0;
+  font-size: clamp(2rem, 9vw, 3rem);
+  line-height: 1.08;
+}
+
+.checkin-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--olive-dark);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.checkin-muted,
+.checkin-empty,
+.checkin-detail-header > p {
+  color: var(--muted);
+}
+
+.checkin-login-shell {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.checkin-login-card {
+  width: min(100%, 27rem);
+  padding: 2rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--paper);
+  box-shadow: 0 1.2rem 3rem rgb(63 63 50 / 9%);
+}
+
+.checkin-form,
+.checkin-form label,
+.checkin-dialog label {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.checkin-form {
+  gap: 1.1rem;
+  margin-top: 1.75rem;
+}
+
+.checkin-form label,
+.checkin-dialog label,
+.checkin-search-label > span {
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.checkin-form input,
+.checkin-search-label input,
+.checkin-dialog textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #c8c3b7;
+  border-radius: 0.8rem;
+  background: #fffefa;
+  color: var(--charcoal);
+  font-size: 1rem;
+}
+
+.checkin-dialog textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.checkin-primary-button,
+.checkin-secondary-button,
+.checkin-danger-button,
+.checkin-small-primary,
+.checkin-cancel-button {
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.checkin-primary-button,
+.checkin-small-primary {
+  border: 1px solid var(--olive-dark);
+  background: var(--olive-dark);
+  color: white;
+}
+
+.checkin-primary-button,
+.checkin-secondary-button,
+.checkin-danger-button {
+  width: 100%;
+}
+
+.checkin-secondary-button {
+  border: 1px solid var(--olive);
+  background: #fffefa;
+  color: var(--olive-dark);
+}
+
+.checkin-danger-button {
+  border: 1px solid var(--error);
+  background: var(--error);
+  color: white;
+}
+
+.checkin-link-button,
+.checkin-back-button {
+  min-height: 2.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--olive-dark);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.checkin-back-button {
+  margin: -0.4rem 0 0.8rem -0.65rem;
+}
+
+.checkin-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.35rem;
+}
+
+.checkin-metrics div {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--paper);
+}
+
+.checkin-metrics span {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.checkin-metrics strong {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+
+.checkin-search-label {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.checkin-search-label input {
+  min-height: 3.6rem;
+  border-color: var(--olive);
+  font-size: 1.05rem;
+}
+
+.checkin-results,
+.checkin-event-list {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.checkin-result-card {
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--paper);
+  color: var(--charcoal);
+  box-shadow: 0 0.45rem 1.4rem rgb(63 63 50 / 5%);
+  text-align: left;
+  cursor: pointer;
+}
+
+.checkin-card-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkin-card-heading strong,
+.checkin-event-list strong {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.checkin-card-heading small,
+.checkin-event-list small {
+  color: var(--muted);
+}
+
+.checkin-status {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid currentcolor;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+}
+
+.checkin-status-pending {
+  color: #786643;
+  background: #f5edda;
+}
+
+.checkin-status-partial {
+  color: #58603f;
+  background: #edf0e4;
+}
+
+.checkin-status-complete {
+  color: #35654c;
+  background: #e5f1e9;
+}
+
+.checkin-preview-list {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.checkin-more {
+  color: var(--olive-dark);
+  font-weight: 750;
+}
+
+.checkin-skeleton,
+.checkin-error,
+.checkin-error-panel,
+.checkin-empty {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+}
+
+.checkin-skeleton {
+  background: var(--paper-deep);
+  color: var(--muted);
+}
+
+.checkin-error,
+.checkin-error-panel {
+  border: 1px solid rgb(159 66 57 / 30%);
+  background: #f9ece9;
+  color: #7c342e;
+}
+
+.checkin-error-panel p {
+  margin-top: 0;
+}
+
+.checkin-detail-header {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--paper);
+}
+
+.checkin-detail-header p {
+  margin: 0;
+}
+
+.checkin-notes {
+  padding: 0.75rem;
+  border-left: 3px solid var(--olive);
+  background: var(--paper-deep);
+}
+
+.checkin-participant-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.checkin-participant {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: #fffefa;
+}
+
+.checkin-participant input[type="checkbox"] {
+  width: 1.45rem;
+  height: 1.45rem;
+  accent-color: var(--olive-dark);
+}
+
+.checkin-participant-name {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.checkin-participant-name span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.checkin-small-primary,
+.checkin-cancel-button {
+  grid-column: 1 / -1;
+}
+
+.checkin-cancel-button {
+  border: 1px solid #b98983;
+  background: transparent;
+  color: var(--error);
+}
+
+.checkin-sticky-actions {
+  position: fixed;
+  z-index: 8;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.75rem max(1rem, env(safe-area-inset-left))
+    calc(0.75rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: rgb(251 249 244 / 97%);
+}
+
+.checkin-dialog-backdrop {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  align-items: end;
+  padding: 1rem;
+  background: rgb(24 26 22 / 55%);
+}
+
+.checkin-dialog {
+  width: min(100%, 32rem);
+  margin: 0 auto;
+  padding: 1.25rem;
+  border-radius: 1.1rem;
+  background: var(--paper);
+}
+
+.checkin-dialog h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.75rem;
+}
+
+.checkin-dialog-actions {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 44rem) {
+  .checkin-content {
+    padding-top: 2rem;
+  }
+
+  .checkin-sticky-actions {
+    right: auto;
+    left: 50%;
+    width: 42rem;
+    transform: translateX(-50%);
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .checkin-participant {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .checkin-small-primary,
+  .checkin-cancel-button {
+    grid-column: auto;
+  }
 }
 
 .page-shell {
