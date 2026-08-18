@@ -1,0 +1,24 @@
+{
+	auto_https off
+	admin off
+}
+
+:{$PORT:3000} {
+	root * /app/dist
+	encode gzip
+
+	header {
+		Referrer-Policy "no-referrer"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+
+	handle /health {
+		respond 200
+	}
+
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
+}
