@@ -5,8 +5,8 @@ import { PublicRSVPPage } from "./pages/PublicRSVPPage";
 export default function App() {
   return (
     <Routes>
-      <Route path="/rsvp/:token" element={<PublicRSVPPage />} />
-      <Route path="*" element={<Navigate to="/rsvp/indisponivel" replace />} />
+      <Route path="/rsvp" element={<PublicRSVPPage />} />
+      <Route path="*" element={<Navigate to="/rsvp" replace />} />
     </Routes>
   );
 }
