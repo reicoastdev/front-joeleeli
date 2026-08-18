@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 import { getPublicRSVP, RSVPApiError, submitPublicRSVP } from "../api/rsvp";
 import { GuestFields } from "../components/GuestFields";
@@ -21,7 +20,7 @@ function initialMode(data: PublicRSVP): InteractionMode {
 }
 
 export function PublicRSVPPage() {
-  const { token = "" } = useParams();
+  const [token] = useState(() => window.location.hash.slice(1));
   const [pageState, setPageState] = useState<PageState>({ kind: "loading" });
   const [mode, setMode] = useState<InteractionMode>("summary");
   const [guestNames, setGuestNames] = useState<string[]>([""]);

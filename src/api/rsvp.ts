@@ -12,8 +12,12 @@ export class RSVPApiError extends Error {
   }
 }
 
-function rsvpEndpoint(token: string) {
-  return `${apiBaseUrl}/api/v1/public/invitations/${encodeURIComponent(token)}/rsvp/`;
+function rsvpEndpoint() {
+  return `${apiBaseUrl}/api/v1/public/rsvp/`;
+}
+
+function authorizationHeader(token: string) {
+  return { Authorization: `Bearer ${token}` };
 }
 
 async function parseResponse(response: Response): Promise<PublicRSVP> {
@@ -27,9 +31,12 @@ export async function getPublicRSVP(
   token: string,
   signal?: AbortSignal,
 ): Promise<PublicRSVP> {
-  const response = await fetch(rsvpEndpoint(token), {
+  const response = await fetch(rsvpEndpoint(), {
     method: "GET",
-    headers: { Accept: "application/json" },
+    headers: {
+      Accept: "application/json",
+      ...authorizationHeader(token),
+    },
     cache: "no-store",
     signal,
   });
@@ -40,11 +47,12 @@ export async function submitPublicRSVP(
   token: string,
   submission: RSVPSubmission,
 ): Promise<PublicRSVP> {
-  const response = await fetch(rsvpEndpoint(token), {
+  const response = await fetch(rsvpEndpoint(), {
     method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      ...authorizationHeader(token),
     },
     body: JSON.stringify(submission),
   });
